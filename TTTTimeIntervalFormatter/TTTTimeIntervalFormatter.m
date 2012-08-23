@@ -91,7 +91,7 @@ static inline NSCalendarUnit NSCalendarUnitFromString(NSString *string) {
         return self.presentDeicticExpression;
     }
 
-    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSCalendar *calendar = [NSCalendar autoupdatingCurrentCalendar];
     NSUInteger unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit | NSWeekCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit;
     NSDateComponents *components = [calendar components:unitFlags fromDate:startingDate toDate:endingDate options:0];
 
