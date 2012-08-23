@@ -44,6 +44,7 @@
         [HTTPBodyString replaceOccurrencesOfString:@"\"" withString:@"\\\"" options:0 range:NSMakeRange(0, [HTTPBodyString length])];
         [HTTPBodyString replaceOccurrencesOfString:@"$" withString:@"\\$" options:0 range:NSMakeRange(0, [HTTPBodyString length])];
         [command appendCommandLineArgument:[NSString stringWithFormat:@"-d \"%@\"", HTTPBodyString]];
+        [HTTPBodyString release];        
     }
 
     NSString *acceptEncodingHeader = [[request allHTTPHeaderFields] valueForKey:@"Accept-Encoding"];
@@ -75,6 +76,7 @@
     if ([[request HTTPBody] length] > 0) {
         NSString *HTTPBodyString = [[NSString alloc] initWithData:[request HTTPBody] encoding:NSUTF8StringEncoding];
         [command appendCommandLineArgument:[NSString stringWithFormat:@"-d %@", HTTPBodyString]];
+        [HTTPBodyString release];        
     }
 
     for (id field in [request allHTTPHeaderFields]) {

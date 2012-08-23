@@ -108,7 +108,10 @@
     TTTArrayFormatter *formatter = [[TTTArrayFormatter alloc] init];
     [formatter setArrayStyle:style];
 
-    return [formatter stringFromArray:anArray];
+    NSString *result = [formatter stringFromArray:anArray];
+    [formatter release];
+    
+    return result;
 }
 
 #pragma mark NSFormatter
@@ -142,6 +145,8 @@
                 *error = NSLocalizedString(@"Couldn’t convert to NSArray", @"Error converting to NSArray");
             }
         }
+        [components release];
+        [lastComponent release];
     }
 
     return returnValue;
